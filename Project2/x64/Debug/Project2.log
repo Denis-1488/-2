@@ -1,0 +1,5 @@
+﻿  Source.cpp
+D:\Project2\Project2\Header.h(24,19): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  (компиляция исходного файла "Source.cpp")
+  
+  Project2.vcxproj -> D:\Project2\x64\Debug\Project2.exe
