@@ -3,45 +3,62 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <ctime>
 using namespace std;
-
-
-
-
 
 class Шибениця {
 
-
-
-    vector<string> words = { "Apple", "House", "Water", "Table", "Cat", "RUST"
-                             "Car", "Ukraine", "PC", "Playstation", "RTX", "ChatGBT",  "PV521"};
+    vector<string> words = { "Apple", "House", "Water", "Table", "Cat", "RUST",
+                             "Car", "Ukraine", "PC", "Playstation", "RTX", "ChatGBT",  "PV521" };
     string word, hidden;
+
     int lives = 10;
+    int incorrect = 0;
 
 public:
     Шибениця() {
-        srand(time(0));
         word = words[rand() % words.size()];
         hidden = string(word.size(), '_');
     }
 
+    // есть ли буква в слове
+    bool check(char letter) {
+        for (char c : word)
+            if (c == letter)
+                return true;
+        return false;
+    }
+
+     //Обновление скрытого слова
+    void updateWord(char letter) {
+        for (size_t i = 0; i < word.size(); i++)
+            if (word[i] == letter)
+                hidden[i] = letter;
+    }
+
     void play() {
         while (lives > 0 && hidden != word) {
-            
+
             cout << "Слово: " << hidden << "   Жизни: " << lives << "\n";
             cout << "Буква: ";
-            char c; cin >> c;
+            char letter;
+            cin >> letter;
 
-            bool ok = false;
-            for (size_t i = 0; i < word.size(); i++)
-                if (word[i] == c) hidden[i] = c, ok = true;
+            bool letterFound = check(letter);
 
-            if (!ok) lives--;
+            if (letterFound) {
+                cout << "Да эта буква '" << letter << "' есть в слове." << endl;
+                updateWord(letter);
+            }
+            else {
+                cout << " Жаль но буквы '" << letter << "' нету в этом слове." << endl;
+                lives--;
+                incorrect++;
+            }
         }
 
-        if (hidden == word) cout << "Красавчик выиграл. Слово: " << word << "\n";
-        else cout << "Ты проиграл. Слово было: " << word << "\n";
+        if (hidden == word)
+            cout << "Красавчик выиграл Слово: " << word << "\n";
+        else
+            cout << "Ти проиграл Слово було: " << word << "\n";
     }
 };
-
