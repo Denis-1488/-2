@@ -5,7 +5,7 @@
 #include <string>
 using namespace std;
 
-class Шибениця {
+class Šibenica {
 
     vector<string> words = { "Apple", "House", "Water", "Table", "Cat", "RUST",
                              "Car", "Ukraine", "PC", "Playstation", "RTX", "ChatGBT",  "PV521" };
@@ -15,7 +15,7 @@ class Шибениця {
     int incorrect = 0;
 
 public:
-    Шибениця() {
+    Šibenica() {
         word = words[rand() % words.size()];
         hidden = string(word.size(), '_');
     }
